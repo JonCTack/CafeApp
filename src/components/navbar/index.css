@@ -1,0 +1,35 @@
+a {
+ color: inherit;
+ text-decoration: none;
+}
+
+nav{
+    background: rgb(182,99,55);
+    background: linear-gradient(90deg, rgba(182,99,55,1) 0%, rgb(155, 85, 47) 50%, rgba(182,99,55,1) 100%);
+    border-radius: 8px 0px 0px 8px;
+    height: 95vh;
+    padding-left: 1vw;
+    padding-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cafePage{
+    background: rgb(182,99,55);
+    background: linear-gradient(90deg, rgba(182,99,55,1) 0%, rgb(155, 85, 47) 50%, rgba(182,99,55,1) 100%);
+    border-radius: 0px 8px 8px 0px;
+    width: 75vw;
+    height: 95vh;
+  }
+
+
+
+/* .navHighlight{
+    background-color: #FBF9F6;
+    color: #968c84;
+    display: inline-block;
+    width: 40vw;
+    border-radius: 0px 0px 8px 8px;
+} */

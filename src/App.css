@@ -1,0 +1,31 @@
+.App {
+  text-align: center;
+}
+
+
+
+
+.App {
+  background: rgb(108,60,35);
+  background: radial-gradient(circle, rgba(108,60,35,1) 33%, rgba(70,41,26,1) 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.appPage{
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  grid-template-rows: 1fr;
+  width: 97%;
+  margin: 20px;
+}
+
+
+.App-link {
+  color: #61dafb;
+}
