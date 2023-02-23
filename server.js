@@ -10,6 +10,7 @@ const session = require('express-session')
 const initPassport = require('./config/passport-config')
 
 const User = require('./models/user')
+const Category = require('./models/category')
 
 require('dotenv').config()
 require('./config/database')
@@ -46,6 +47,12 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'build')));
 
 //routes
+
+app.get('/get_categories', async (req, res) => {
+    let arrayOfCategories = await Category.find()
+    console.log(arrayOfCategories)
+    res.json(arrayOfCategories)
+})
 
 app.get('/session-info', (req,res) => {
     res.json({
@@ -100,3 +107,5 @@ app.get('/*', function(req, res) {
 app.listen(port, () => {
     console.log(`Server is Listening on ${port}`);
 });
+
+

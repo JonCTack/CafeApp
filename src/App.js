@@ -15,6 +15,7 @@ function App() {
   let { user, setUser } = useContext(AppContext)
   const [callMade, setCallMade] = useState(false)
 
+
   useEffect( ()=> {
     const getSession = async () => {
       let userResponse = await getUserFromSession()

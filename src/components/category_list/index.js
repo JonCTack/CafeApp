@@ -1,10 +1,32 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { AppContext } from '../../contexts/app_context'
 import './index.css'
 
-const CategoryList = () => {
+
+const CategoryList = ({categories}) => {
+
+  const {activeCategory, setActiveCategory} = useContext(AppContext)
+  console.log(activeCategory)
+  const handleCatClick = (cat) => {
+    setActiveCategory(cat)
+  }
+
+  let categoriesJSX = categories.map((cat) => {
+    return (
+      <li 
+      key={cat._id} 
+      onClick={() => handleCatClick(cat.name)}
+      className={cat.name === activeCategory ? 'active' : ''}>
+        {cat.name}
+        </li>
+    )
+  })
+
   return (
     <div>
-      CategoryList
+      <ul className='categoryList'>
+        {categoriesJSX}
+      </ul>
     </div>
   )
 }

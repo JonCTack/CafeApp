@@ -24,7 +24,9 @@ nav{
     height: 95vh;
   }
 
-
+.logOut{
+    padding: 0;
+}
 
 /* .navHighlight{
     background-color: #FBF9F6;

@@ -1,5 +1,5 @@
 const mongoose =  require('mongoose')
-let connectionString = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPASS}@cluster0.ue2ejns.mongodb.net/users?retryWrites=true&w=majority`
+let connectionString = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPASS}@cluster0.ue2ejns.mongodb.net/CafeApp?retryWrites=true&w=majority`
 
 
 mongoose.set('strictQuery', false);
