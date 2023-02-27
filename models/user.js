@@ -14,13 +14,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         minLength: 3,
         required: true,
-    }
+        select: false,
+    },
 },
 {
     timestamps:true,
 }
 );
 
-const User = mongoose.model('users', userSchema);
+const User = mongoose.model('Users', userSchema);
 
 module.exports = User;

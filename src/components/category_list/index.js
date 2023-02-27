@@ -6,7 +6,7 @@ import './index.css'
 const CategoryList = ({categories}) => {
 
   const {activeCategory, setActiveCategory} = useContext(AppContext)
-  console.log(activeCategory)
+
   const handleCatClick = (cat) => {
     setActiveCategory(cat)
   }

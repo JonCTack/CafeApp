@@ -2,7 +2,9 @@ import React from 'react'
 
 const OrderHistory = () => {
   return (
-    <div className="cafePage">OrderHistory</div>
+    <div className="cafePage">
+      OrderHistory
+      </div>
   )
 }
 

@@ -7,12 +7,13 @@ import Navbar from './components/navbar';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { getUserFromSession } from './utilities/user-functions';
 import { AppContext } from './contexts/app_context';
+import axios from 'axios';
 
 
 
 function App() {
 
-  let { user, setUser } = useContext(AppContext)
+  let { user, setUser, setItems, setCart } = useContext(AppContext)
   const [callMade, setCallMade] = useState(false)
 
 
@@ -27,7 +28,27 @@ function App() {
       setCallMade(true)
     }, 100)
       
+    const getItems = async () => {
+      let itemsResponse = await axios('/get_items')
+      setItems(itemsResponse.data)
+    }
+    getItems()
+
   },[])
+
+  useEffect(()=>{
+    const getCart = async () => {
+    if(user){
+      let response = await axios({
+        method: 'GET',
+        url: "/get_cart"
+      })
+      console.log(response);
+      setCart(response.data)
+    }
+  }
+  getCart()
+  },[user])
   
   const returnPage = () => {
     if (callMade) {
@@ -46,7 +67,7 @@ function App() {
       }
     </>)
     } else {
-      return (<div></div>)
+      return (<div>loading...</div>)
     }
   }
 

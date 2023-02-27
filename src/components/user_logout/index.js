@@ -9,10 +9,10 @@ const UserLogOut = () => {
   return (
     <div>
         <div className='userLogout btn-sm'>
-        {user.name || "guest"}
+        {user._doc.name || "guest"}
         </div>
         <div className='email btn-xs'>
-        {user.email || "guest@mail.com"}
+        {user._doc.email || "guest@email.com"}
         </div>
         <div className='button btn-sm' onClick={handleLogout}>
         LOG OUT

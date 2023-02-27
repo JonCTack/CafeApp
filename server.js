@@ -11,6 +11,8 @@ const initPassport = require('./config/passport-config')
 
 const User = require('./models/user')
 const Category = require('./models/category')
+const Item = require('./models/item')
+const Order =require('./models/order')
 
 require('dotenv').config()
 require('./config/database')
@@ -50,14 +52,23 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/get_categories', async (req, res) => {
     let arrayOfCategories = await Category.find()
-    console.log(arrayOfCategories)
     res.json(arrayOfCategories)
-})
+});
+app.get('/get_items', async (req, res) => {
+    let arrayOfItems = await Item.find().populate('category')
+    res.json(arrayOfItems)
+});
 
 app.get('/session-info', (req,res) => {
     res.json({
         session: req.session
     })
+})
+
+app.get('/get_cart', async (req,res) => {
+    let cart = await Order.getCart(req.session.passport.user._doc._id)
+    console.log(cart)
+    res.json(cart)
 })
 
 app.post('/users/signup', async (req, res) => {
@@ -73,9 +84,16 @@ app.post('/users/signup', async (req, res) => {
     res.json('singed up')
 });
 
+app.put('/add_to_cart/:itemID/:newQty', async (req,res) => {
+    let { itemID, newQty } = req.params;
+    let cart = await Order.getCart(req.session.passport.user._doc._id);
+    cart.orderItems.find(orderItem => orderItem._id.equals(itemId))
+
+})
+
 app.put('/users/login', async (req, res, next) => {
 
-    passport.authenticate("local", (err, user) => {
+    passport.authenticate("local", (err, user, message) => {
         console.log("authenticating")
         if(err) throw err;
         if(!user){
@@ -86,8 +104,9 @@ app.put('/users/login', async (req, res, next) => {
             })
         } else {
             console.log("successfully authenticated");
-            req.logIn(user, err => {
-                delete user.password;
+            let noPasswordUser = {...user};
+            delete noPasswordUser.password
+            req.logIn(noPasswordUser, err => {
                 if(err) throw err
                 res.json({
                     message: "successfully authenticated",

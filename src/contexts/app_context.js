@@ -6,12 +6,17 @@ export const AppContext = createContext();
 const AppContextProvide = (props) => {
 
     const [user, setUser] = useState(null);
-    const [activeCategory, setActiveCategory] = useState('Sandwiches')
+    const [items, setItems] = useState([]);
+    const [activeCategory, setActiveCategory] = useState('Sandwiches');
+    const [cart, setCart] = useState({})
+    
 
     return (
         <AppContext.Provider value={{
             user, setUser,
-            activeCategory, setActiveCategory
+            items, setItems,
+            activeCategory, setActiveCategory,
+            cart, setCart,
         }}>
             {props.children}
         </AppContext.Provider>
